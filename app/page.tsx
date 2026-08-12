@@ -1,0 +1,280 @@
+'use client';
+
+import { motion } from 'motion/react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowRight, Calendar, Users, Award, BookOpen, MapPin } from 'lucide-react';
+
+export default function Home() {
+  return (
+    <div className="flex flex-col gap-24 pb-12">
+      {/* Hero Section */}
+      <section className="relative min-h-[85vh] flex items-center pt-10">
+        <div className="container mx-auto px-6 max-w-7xl">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="flex flex-col gap-8 max-w-2xl relative z-10">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full w-fit border-white/40"
+              >
+                <span className="w-2 h-2 rounded-full bg-success-light animate-pulse" />
+                <span className="text-sm font-semibold tracking-wide text-secondary-light">ESTABLISHED 1995</span>
+              </motion.div>
+              
+              <motion.h1 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="text-5xl md:text-7xl lg:text-[80px] leading-[1.05] tracking-tight"
+              >
+                WE GROW <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-info-light to-blue-400">DREAMS</span> <br />
+                NOT HOUSES.
+              </motion.h1>
+              
+              <motion.p 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="text-lg md:text-xl text-primary-light/70 dark:text-primary/70 max-w-lg leading-relaxed"
+              >
+                Empowering the next generation of visionaries, builders, and leaders through an active community and extensive resources.
+              </motion.p>
+              
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                className="flex flex-col sm:flex-row gap-4 pt-4"
+              >
+                <Link href="/content/gallery" className="btn-primary group">
+                  Explore Gallery
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <Link href="/contact" className="btn-secondary">
+                  Contact Us
+                </Link>
+              </motion.div>
+            </div>
+            
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, rotateX: 10, rotateY: -10 }}
+              animate={{ opacity: 1, scale: 1, rotateX: 0, rotateY: 0 }}
+              transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="relative h-[500px] lg:h-[700px] w-full"
+              style={{ perspective: 1000 }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-tr from-info-light/20 to-transparent rounded-[40px] transform rotate-3" />
+              <div className="absolute inset-0 glass-card overflow-hidden">
+                <Image 
+                  src="https://picsum.photos/seed/hero/1200/1600"
+                  alt="Club activities"
+                  fill
+                  className="object-cover hover:scale-105 transition-transform duration-700"
+                  referrerPolicy="no-referrer"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Strip */}
+      <section className="container mx-auto px-6 max-w-7xl">
+        <div className="glass rounded-[36px] p-8 md:p-12 border-white/40 shadow-xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-black/5 dark:divide-white/10">
+            {[
+              { label: 'Active Members', value: '1,240+', icon: Users },
+              { label: 'Years Established', value: '28', icon: Calendar },
+              { label: 'Alumni Network', value: '5,000+', icon: Award },
+              { label: 'Resources', value: '350+', icon: BookOpen },
+            ].map((stat, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ delay: i * 0.1, duration: 0.6 }}
+                className="flex flex-col items-center justify-center text-center gap-3 px-4"
+              >
+                <div className="w-12 h-12 rounded-2xl bg-info-light/10 text-info-light flex items-center justify-center mb-2 group hover:scale-110 transition-transform">
+                  <stat.icon className="w-6 h-6 group-hover:rotate-12 transition-transform" />
+                </div>
+                <div className="text-4xl md:text-5xl font-bold font-numbers tracking-tight">
+                  {stat.value}
+                </div>
+                <div className="text-sm font-medium text-secondary-light uppercase tracking-wider">
+                  {stat.label}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* About Overview */}
+      <section className="container mx-auto px-6 max-w-7xl">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="relative h-[400px] lg:h-[600px] w-full rounded-[36px] overflow-hidden group shadow-2xl"
+          >
+            <Image
+              src="https://picsum.photos/seed/about/1000/1200"
+              alt="About our club"
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-700"
+              referrerPolicy="no-referrer"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            <div className="absolute bottom-0 left-0 p-8">
+              <div className="glass px-6 py-4 rounded-2xl border-white/20 backdrop-blur-md hover:bg-white/70 transition-colors">
+                <p className="text-primary-light dark:text-primary font-medium">&quot;Building leaders since 1995&quot;</p>
+              </div>
+            </div>
+          </motion.div>
+          
+          <div className="flex flex-col gap-6">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-5xl font-bold"
+            >
+              More Than Just A <span className="text-info-light">Club</span>
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-lg text-primary-light/70 dark:text-primary/70 leading-relaxed"
+            >
+              We believe in fostering an environment where ideas flourish and potential is realized. Our platform serves as a bridge between academic learning and real-world application, offering members unique opportunities to lead, innovate, and grow.
+            </motion.p>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-lg text-primary-light/70 dark:text-primary/70 leading-relaxed"
+            >
+              Through hands-on projects, mentorship programs, and extensive networking events, we empower individuals to shape their futures and make lasting impacts in their respective fields.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="mt-4"
+            >
+              <Link href="/about/history" className="btn-secondary w-fit group">
+                Read Our History
+                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Split Section: Blog & Upcoming Events */}
+      <section className="container mx-auto px-6 max-w-7xl">
+        <div className="grid lg:grid-cols-12 gap-12">
+          {/* Blog Strip (Left 8 cols) */}
+          <div className="lg:col-span-8 flex flex-col gap-8">
+            <div className="flex items-end justify-between">
+              <h2 className="text-3xl md:text-4xl font-bold">Latest Stories</h2>
+              <Link href="/content/blog" className="text-info-light font-medium hover:underline flex items-center gap-1 group">
+                View All <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+            
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6" style={{ perspective: 1000 }}>
+              {[1, 2, 3].map((item) => (
+                <motion.div 
+                  key={item}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: item * 0.1 }}
+                  className="glass-card group flex flex-col h-full overflow-hidden"
+                >
+                  <div className="relative h-48 w-full overflow-hidden">
+                    <Image 
+                      src={`https://picsum.photos/seed/blog${item}/600/400`}
+                      alt="Blog cover"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
+                  </div>
+                  <div className="p-6 flex flex-col flex-grow">
+                    <div className="text-xs font-bold text-info-light mb-2">OCT 12, 2026</div>
+                    <h3 className="font-bold text-lg mb-3 line-clamp-2 group-hover:text-info-light transition-colors">
+                      Transforming the Future of Digital Leadership
+                    </h3>
+                    <p className="text-primary-light/70 dark:text-primary/70 text-sm line-clamp-3 mb-4 flex-grow">
+                      Explore the nuances of modern leadership in an increasingly digital world, featuring insights from our alumni network.
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Upcoming Events (Right 4 cols) */}
+          <div className="lg:col-span-4 flex flex-col gap-8">
+            <div className="flex items-end justify-between">
+              <h2 className="text-3xl md:text-4xl font-bold">Upcoming</h2>
+              <Link href="/events/upcoming" className="text-info-light font-medium hover:underline flex items-center gap-1 group">
+                More <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+
+            <div className="glass rounded-[32px] p-2 flex flex-col gap-2">
+              {[1, 2, 3].map((item) => (
+                <motion.div 
+                  key={item}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: item * 0.1 }}
+                  className="flex gap-4 p-4 rounded-[24px] hover:bg-black/5 dark:hover:bg-white/5 transition-colors group cursor-pointer"
+                >
+                  <div className="w-16 h-16 shrink-0 rounded-2xl glass flex flex-col items-center justify-center border-info-light/20 text-info-light">
+                    <span className="text-xs font-bold uppercase">Nov</span>
+                    <span className="text-xl font-numbers font-bold leading-none">14</span>
+                  </div>
+                  <div className="flex flex-col justify-center">
+                    <h4 className="font-bold text-base group-hover:text-info-light transition-colors line-clamp-1">Annual Tech Symposium 2026</h4>
+                    <p className="text-sm text-primary-light/60 dark:text-primary/60 flex items-center gap-1 mt-1">
+                      <MapPin className="w-3 h-3" /> Main Auditorium
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sponsors/Partners */}
+      <section className="container mx-auto px-6 max-w-7xl text-center flex flex-col gap-10">
+        <h3 className="text-sm font-bold text-secondary-light uppercase tracking-widest">Supported By Industry Leaders</h3>
+        <div className="flex flex-wrap justify-center gap-12 md:gap-20 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+          {[1,2,3,4,5].map(i => (
+            <div key={i} className="flex items-center justify-center font-bold text-2xl tracking-tighter hover:text-info-light transition-colors cursor-pointer">
+              PARTNER <span className="font-numbers ml-1">0{i}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
