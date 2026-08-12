@@ -24,10 +24,10 @@ export default function MagazinePage() {
           src={selected.image}
           alt={selected.title}
           fill
-          className="object-cover opacity-30 dark:opacity-40 transition-opacity duration-1000"
+          className="object-cover opacity-80 dark:opacity-90 transition-opacity duration-1000"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-bg-light/70 dark:bg-background/80" />
+        <div className="absolute inset-0 bg-bg-light/40 dark:bg-background/60" />
       </div>
 
       <div className="container mx-auto px-6 max-w-3xl flex flex-col items-center text-center">
