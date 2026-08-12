@@ -9,15 +9,6 @@ export default function HistoryPage() {
       <PageHeader title="Our History" />
       
       <div className="glass rounded-[36px] overflow-hidden mb-12">
-        <div className="relative h-[400px] w-full">
-          <Image
-            src="https://picsum.photos/seed/history/1200/600"
-            alt="Club History"
-            fill
-            className="object-cover"
-            referrerPolicy="no-referrer"
-          />
-        </div>
         <div className="p-8 md:p-12 prose dark:prose-invert max-w-none">
           <h2>The Beginning (1995)</h2>
           <p>

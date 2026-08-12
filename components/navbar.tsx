@@ -71,7 +71,7 @@ export function Navbar() {
       animate={{ y: 0 }}
       transition={{ type: 'spring', stiffness: 300, damping: 30 }}
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 rounded-b-2xl',
         isScrolled ? 'glass-nav py-3' : 'bg-transparent py-5'
       )}
     >
@@ -110,7 +110,7 @@ export function Navbar() {
               {/* Dropdown */}
               {link.children && (
                 <div className="absolute top-full left-0 pt-4 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300">
-                  <div className="bg-white/95 dark:bg-[#141923]/95 backdrop-blur-xl border border-black/10 dark:border-white/10 shadow-xl rounded-2xl p-2 min-w-[200px] flex flex-col gap-1">
+                  <div className="bg-white/95 dark:bg-[#141923]/95 backdrop-blur-xl border border-black/10 dark:border-white/10 shadow-xl rounded-2xl rounded-tr-none rounded-tl-none p-2 min-w-[200px] flex flex-col gap-1">
                     {link.children.map((child, cIdx) => (
                       <Link
                         key={cIdx}

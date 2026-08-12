@@ -1,10 +1,37 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Calendar, Users, Award, BookOpen, MapPin } from 'lucide-react';
+
+function AnimatedCounter({ endValue, duration = 2000, suffix = "" }: { endValue: number, duration?: number, suffix?: string }) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let startTimestamp: number | null = null;
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      
+      // easeOutExpo
+      const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      
+      setCount(Math.floor(easeProgress * endValue));
+      
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    
+    window.requestAnimationFrame(step);
+  }, [endValue, duration]);
+
+  // Format with commas if over 999
+  const formatted = count >= 1000 ? count.toLocaleString() : count.toString();
+  return <>{formatted}{suffix}</>;
+}
 
 function TypewriterHeading() {
   const [text, setText] = React.useState('');
@@ -102,10 +129,10 @@ export default function Home() {
         <div className="glass rounded-[36px] p-8 md:p-12 border-white/40 shadow-xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-black/5 dark:divide-white/10">
             {[
-              { label: 'Active Members', value: '1,240+', icon: Users },
-              { label: 'Years Established', value: '28', icon: Calendar },
-              { label: 'Alumni Network', value: '5,000+', icon: Award },
-              { label: 'Resources', value: '350+', icon: BookOpen },
+              { label: 'Active Members', endValue: 1240, suffix: '+' , icon: Users },
+              { label: 'Years Established', endValue: 28, suffix: '', icon: Calendar },
+              { label: 'Alumni Network', endValue: 5000, suffix: '+', icon: Award },
+              { label: 'Resources', endValue: 350, suffix: '+', icon: BookOpen },
             ].map((stat, i) => (
               <motion.div 
                 key={i}
@@ -119,7 +146,7 @@ export default function Home() {
                   <stat.icon className="w-6 h-6 group-hover:rotate-12 transition-transform" />
                 </div>
                 <div className="text-4xl md:text-5xl font-bold font-numbers tracking-tight">
-                  {stat.value}
+                  <AnimatedCounter endValue={stat.endValue} suffix={stat.suffix} />
                 </div>
                 <div className="text-sm font-medium text-secondary-light uppercase tracking-wider">
                   {stat.label}
