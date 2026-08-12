@@ -1,9 +1,43 @@
 'use client';
 
+import React from 'react';
 import { motion } from 'motion/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Calendar, Users, Award, BookOpen, MapPin } from 'lucide-react';
+
+function TypewriterHeading() {
+  const [text, setText] = React.useState('');
+  const fullText = "WE GROW DREAMS NOT HOUSES.";
+
+  React.useEffect(() => {
+    let i = 0;
+    const timer = setInterval(() => {
+      setText(fullText.slice(0, i));
+      i++;
+      if (i > fullText.length) clearInterval(timer);
+    }, 100);
+    return () => clearInterval(timer);
+  }, []);
+
+  const showDreams = text.length >= 8;
+  const showLine2 = text.length >= 15;
+
+  return (
+    <div className="text-5xl md:text-7xl lg:text-[80px] leading-[1.05] tracking-tight min-h-[160px] md:min-h-[220px] lg:min-h-[260px] font-bold">
+      {text.slice(0, 7)}
+      {showDreams && <br />}
+      {showDreams && (
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-info-light to-blue-400">
+          {text.slice(8, 14)}
+        </span>
+      )}
+      {showLine2 && <br />}
+      {showLine2 && text.slice(15)}
+      <span className="animate-pulse border-r-4 border-info-light ml-2 inline-block h-[0.8em] align-middle" />
+    </div>
+  );
+}
 
 export default function Home() {
   return (
@@ -23,16 +57,7 @@ export default function Home() {
                 <span className="text-sm font-semibold tracking-wide text-secondary-light">ESTABLISHED 1995</span>
               </motion.div>
               
-              <motion.h1 
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="text-5xl md:text-7xl lg:text-[80px] leading-[1.05] tracking-tight"
-              >
-                WE GROW <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-info-light to-blue-400">DREAMS</span> <br />
-                NOT HOUSES.
-              </motion.h1>
+              <TypewriterHeading />
               
               <motion.p 
                 initial={{ opacity: 0, y: 30 }}
