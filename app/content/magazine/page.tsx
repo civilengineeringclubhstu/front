@@ -19,15 +19,15 @@ export default function MagazinePage() {
   return (
     <div className="relative min-h-screen pb-24 flex flex-col pt-10">
       {/* Background Image */}
-      <div className="fixed inset-0 -z-20">
+      <div className="fixed inset-0 -z-20 pointer-events-none">
         <Image
           src={selected.image}
           alt={selected.title}
           fill
-          className="object-cover opacity-15 dark:opacity-20 blur-md transition-opacity duration-1000"
+          className="object-cover opacity-30 dark:opacity-40 transition-opacity duration-1000"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-bg-light/80 dark:bg-background/80" />
+        <div className="absolute inset-0 bg-bg-light/70 dark:bg-background/80" />
       </div>
 
       <div className="container mx-auto px-6 max-w-3xl flex flex-col items-center text-center">
@@ -64,20 +64,10 @@ export default function MagazinePage() {
              initial={{ opacity: 0, scale: 0.95, y: 20 }}
              animate={{ opacity: 1, scale: 1, y: 0 }}
              transition={{ duration: 0.6 }}
-             className="flex flex-col items-center"
+             className="flex flex-col items-center mt-12"
           >
-             <div className="relative aspect-[3/4] w-full max-w-md mx-auto rounded-[32px] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.3)] ring-1 ring-white/20 mb-12">
-                <Image
-                  src={selected.image}
-                  alt={selected.title}
-                  fill
-                  className="object-cover"
-                  referrerPolicy="no-referrer"
-                />
-             </div>
-
-             <h2 className="text-4xl md:text-5xl font-bold mb-6">{selected.title}</h2>
-             <p className="text-primary-light/80 dark:text-primary/80 leading-relaxed mb-10 text-lg max-w-2xl">
+             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-center">{selected.title}</h2>
+             <p className="text-primary-light/80 dark:text-primary/80 leading-relaxed mb-10 text-lg max-w-2xl text-center">
                Explore our latest publication featuring in-depth interviews with industry leaders, highlights from our recent events, and articles written by our talented community members. Available in high-resolution PDF format.
              </p>
              

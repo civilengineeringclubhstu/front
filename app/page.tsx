@@ -47,16 +47,6 @@ export default function Home() {
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="flex flex-col gap-8 max-w-2xl relative z-10">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full w-fit border-white/40"
-              >
-                <span className="w-2 h-2 rounded-full bg-success-light animate-pulse" />
-                <span className="text-sm font-semibold tracking-wide text-secondary-light">ESTABLISHED 1995</span>
-              </motion.div>
-              
               <TypewriterHeading />
               
               <motion.p 
